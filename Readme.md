@@ -1,13 +1,15 @@
 
-# YourLib
+# Js inheritance test project
 
 Description
+
+A simple test project to try out javascript inheritance.
 
 ## License 
 
 (The MIT License)
 
-Copyright (c) 2009 Your Name &lt;Your Email&gt;
+Copyright (c) 2009 Gewalli &lt;gewalli (at) gmail&gt;
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
