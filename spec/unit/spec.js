@@ -249,16 +249,19 @@ describe 'override'
 			var self = this;
 			this.m_name = name;
 			this.sayName = function(){return self.m_name;};
+			this.say = function(that){return that;};
 		};
 		desc.Feline = function (name){
 			var self = this;
 			desc.FurryAnimal.call(this,name);
 			app.override(self,'sayName',function(){ return "Feline: "+this();})
+			app.override(self,'say',function(that){ return "Feline: "+this(that);})
 		};
 		desc.Cat = function(name){
 			var self = this;
 			desc.Feline.apply(this,arguments);
 			app.override(self,'sayName',function(){ return "Cat: "+this();})
+			app.override(self,'say',function(that){ return "Cat: "+this(that);})
 		};
 	end
 	describe 'rat'
@@ -275,9 +278,11 @@ describe 'override'
 		end
 		it "should say lion"
 			this.lion.sayName().should.be("Feline: lion")
+			this.lion.say('lion').should.be("Feline: lion")
 		end
 		it "should despite redefining 'this' say lion"
 			this.lion.sayName.call({m_name:"red"}).should.be("Feline: lion");
+			this.lion.say.call({m_name:"red"},'lion').should.be("Feline: lion");
 		end
 	end
 	describe 'cat'
@@ -286,6 +291,7 @@ describe 'override'
 		end
 		it "should say missan"
 			this.cat.sayName().should.be("Cat: Feline: missan");
+			this.cat.say('missan').should.be("Cat: Feline: missan");
 		end
 	end
 end
