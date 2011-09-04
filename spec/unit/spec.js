@@ -241,3 +241,51 @@ describe 'app'
 		end
 	end
 end
+
+describe 'override'
+	before_each
+		var desc = this;
+		desc.FurryAnimal = function (name){
+			var self = this;
+			this.m_name = name;
+			this.sayName = function(){return self.m_name;};
+		};
+		desc.Feline = function (name){
+			var self = this;
+			desc.FurryAnimal.call(this,name);
+			app.override(self,'sayName',function(){ return "Feline: "+this();})
+		};
+		desc.Cat = function(name){
+			var self = this;
+			desc.Feline.apply(this,arguments);
+			app.override(self,'sayName',function(){ return "Cat: "+this();})
+		};
+	end
+	describe 'rat'
+		before_each
+			this.animal = new this.FurryAnimal("rat");
+		end
+		it "animal should say rat"
+			this.animal.sayName().should.be("rat");
+		end
+	end
+	describe 'lion'
+		before_each
+			this.lion = new this.Feline("lion");
+		end
+		it "should say lion"
+			this.lion.sayName().should.be("Feline: lion")
+		end
+		it "should despite redefining 'this' say lion"
+			this.lion.sayName.call({m_name:"red"}).should.be("Feline: lion");
+		end
+	end
+	describe 'cat'
+		before_each
+			this.cat = new this.Cat("missan");
+		end
+		it "should say missan"
+			this.cat.sayName().should.be("Cat: Feline: missan");
+		end
+	end
+end
