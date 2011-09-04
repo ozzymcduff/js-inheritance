@@ -1,4 +1,3 @@
-
 0.0.1 / 2011-05-13
 ------------------
 
@@ -10,3 +9,10 @@ Some tests of javascript inheritance.
 ------------------
 
 * Test of something akin to override 
+
+0.0.3 / 2011-09-04
+------------------
+
+* JsDoc
+
+Generate documentation based on javascript. Mostly to try out jsdoc-toolkit.
