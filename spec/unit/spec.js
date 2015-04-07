@@ -2,16 +2,16 @@
 describe 'standard inheritance'
 	before_each
 		var desc = this;
-		desc.FurryAnimal = function (name){
+		desc.FurryAnimal = function FurryAnimal(name){
 			var self = this;
 			this.m_name = name;
 			this.sayName = function(){return self.m_name;};
 		};
-		desc.Feline = function (name){
+		desc.Feline = function Feline(name){
 			var self = this;
 			desc.FurryAnimal.call(this,name);
 		};
-		desc.Cat = function(name){
+		desc.Cat = function Cat(name){
 			var self = this;
 			desc.Feline.apply(this,arguments);
 		};
@@ -23,6 +23,10 @@ describe 'standard inheritance'
 		it "animal should say rat"
 			this.animal.sayName().should.be("rat");
 		end
+		it "rat should have type"
+			app.getName(this.animal).should.be("FurryAnimal");
+		end
+
 	end
 	describe 'lion'
 		before_each
@@ -34,6 +38,9 @@ describe 'standard inheritance'
 		it "should despite redefining 'this' say lion"
 			this.lion.sayName.call({m_name:"red"}).should.be("lion");
 		end
+		it "lion should have type"
+			app.getName(this.lion).should.be("Feline");
+		end
 	end
 	describe 'cat'
 		before_each
@@ -42,13 +49,35 @@ describe 'standard inheritance'
 		it "should say missan"
 			this.cat.sayName().should.be("missan");
 		end
+		it "cat should have type"
+			app.getName(this.cat).should.be("Cat");
+		end
+
 	end
 end
 describe 'prototype'
 	describe 'animal'
 		before_each
 			var desc = this;
-			desc.Animal = function (name){
+			desc.FurryAnimal = function FurryAnimal(name){
+				this.m_name = name;
+			};
+			desc.FurryAnimal.prototype.sayName = function(){return this.m_name;};
+
+			desc.Feline = function Feline(name){
+				var self = this;
+				desc.FurryAnimal.call(this,name);
+			};
+			desc.Feline.prototype = Object.create(desc.FurryAnimal.prototype);
+			desc.Feline.prototype.constructor = desc.Feline;
+			desc.Cat = function Cat(name){
+				var self = this;
+				desc.Feline.apply(this,arguments);
+			};
+			desc.Cat.prototype = Object.create(desc.Feline.prototype);
+			desc.Cat.prototype.constructor = desc.Cat;
+
+			desc.Animal = function Animal(name){
 				var self = this;
 				this.m_name = name;
 				this.sayName = function(){return self.m_name;};
@@ -59,11 +88,49 @@ describe 'prototype'
 			var animal = app.protectThis(new desc.Animal("animal"));
 			animal.sayName.call({m_name:"name"}).should.be("animal");
 		end
+		describe 'rat'
+			before_each
+				this.animal = new this.FurryAnimal("rat");
+			end
+			it "animal should say rat"
+				this.animal.sayName().should.be("rat");
+			end
+			it "rat should have type"
+				app.getName(this.animal).should.be("FurryAnimal");
+			end
+
+		end
+		describe 'lion'
+			before_each
+				this.lion = new this.Feline("lion");
+			end
+			it "should say lion"
+				this.lion.sayName().should.be("lion")
+			end
+			it "should when redefining 'this' say red"
+				this.lion.sayName.call({m_name:"red"}).should.be("red");
+			end
+			it "lion should have type"
+				app.getName(this.lion).should.be("Feline");
+			end
+		end
+		describe 'cat'
+			before_each
+				this.cat = new this.Cat("missan");
+			end
+			it "should say missan"
+				this.cat.sayName().should.be("missan");
+			end
+			it "cat should have type"
+				app.getName(this.cat).should.be("Cat");
+			end
+
+		end
 	end
 	describe 'self'
 		before_each
 			var desc = this;
-			desc.SpineLess = function(name){
+			desc.SpineLess = function SpineLess(name){
 				//this.m_name = name;
 				this.getSelf().m_name = name;
 			};
@@ -73,6 +140,7 @@ describe 'prototype'
 				this.sayName = function(){return self.m_name;};
 				this.getSelf = function(){return self;};//The danger of prototype inheritance
 			})();
+			//Object.create(
 		end
 	
 		/*app.protectThis*/

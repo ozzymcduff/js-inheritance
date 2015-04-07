@@ -1,6 +1,6 @@
 
 task :default do
-  sh "jspec run --rhino" do |ok, res|
+  sh "npm test" do |ok, res|
     if !ok
       raise "failed jspec!"
     end

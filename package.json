@@ -1,0 +1,23 @@
+{
+  "name": "js-inheritance",
+  "version": "1.0.0",
+  "description": "Description",
+  "main": "index.js",
+  "dependencies": {
+  },
+  "devDependencies": {
+  },
+  "scripts": {
+    "test": "node ./spec/node.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wallymathieu/js-inheritance.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wallymathieu/js-inheritance/issues"
+  },
+  "homepage": "https://github.com/wallymathieu/js-inheritance"
+}
