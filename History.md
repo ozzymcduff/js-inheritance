@@ -16,3 +16,8 @@ Some tests of javascript inheritance.
 * JsDoc
 
 Generate documentation based on javascript. Mostly to try out jsdoc-toolkit.
+
+0.0.4 / 2015-04-07
+------------------
+
+Trying out [Object.create prototype](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Inheritance_and_the_prototype_chain)
