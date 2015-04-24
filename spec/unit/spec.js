@@ -98,7 +98,9 @@ describe 'prototype'
 			it "rat should have type"
 				app.getName(this.animal).should.be("FurryAnimal");
 			end
-
+			it "rat be instanceof"
+				(this.animal instanceof this.FurryAnimal).should.be(true);
+			end
 		end
 		describe 'lion'
 			before_each
@@ -112,6 +114,10 @@ describe 'prototype'
 			end
 			it "lion should have type"
 				app.getName(this.lion).should.be("Feline");
+			end
+			it "lion be instanceof"
+				(this.lion instanceof this.FurryAnimal).should.be(true);
+				(this.lion instanceof this.Feline).should.be(true);
 			end
 		end
 		describe 'cat'
