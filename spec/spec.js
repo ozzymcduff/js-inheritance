@@ -101,6 +101,9 @@ describe('prototype', function(){
       it("rat should have type", function(){
         expect(application.getName(prt.animal)).to.equal("FurryAnimal");
       });
+      it("rat should be instance of", function(){
+        expect(prt.animal instanceof prt.FurryAnimal).to.equal(true);
+      });
     });
     describe('lion', function(){
       beforeEach(function(){
@@ -114,6 +117,10 @@ describe('prototype', function(){
       });
       it("lion should have type", function(){
         expect(application.getName(prt.lion)).to.equal("Feline");
+      });
+      it("lion should be instance of", function(){
+        expect(prt.lion instanceof prt.FurryAnimal).to.equal(true);
+        expect(prt.lion instanceof prt.Feline).to.equal(true);
       });
     });
     describe('cat', function(){
