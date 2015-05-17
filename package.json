@@ -3,13 +3,16 @@
   "version": "1.0.0",
   "description": "Description",
   "main": "index.js",
-  "dependencies": {},
+  "dependencies": {
+    "amdefine": "^0.1.0",
+    "requirejs": "^2.1.17"
+  },
   "devDependencies": {
     "expect.js": "^0.3.1",
     "mocha": "^2.2.4"
   },
   "scripts": {
-    "test": "mocha spec/spec.js"
+    "test": "mocha test/spec.js"
   },
   "repository": {
     "type": "git",

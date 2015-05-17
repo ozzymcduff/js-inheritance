@@ -1,18 +1,13 @@
 <html>
-	<head>
-		<script src="./lib/jspec.js"></script>
-		<script src="./lib/jspec.xhr.js"></script>
-		<script src="../lib/application.js"></script>
-		<script src="/spec/unit/spec.helper.js"></script>
-		<script>
-			function runSuites() {
-				JSpec
-				.exec('unit/spec.js')
-				.run({ reporter: JSpec.reporters.Server, verbose: true, failuresOnly: true, fixturePath: '/spec/fixtures' })
-				.report()
-			}
-		</script>
-	</head>
-	<body class="jspec" onLoad="runSuites();">
-	</body>
+<head>
+  <meta charset="utf-8">
+  <title>Mocha Tests</title>
+  <link rel="stylesheet" href="../node_modules/mocha/mocha.css" />
+</head>
+<body>
+  <div id="mocha"></div>
+  <script src="../node_modules/mocha/mocha.js"></script>
+  <script>mocha.setup('bdd')</script>
+  <script data-main="./setup.js" src="../node_modules/requirejs/require.js"></script>
+</body>
 </html>

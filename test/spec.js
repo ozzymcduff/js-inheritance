@@ -1,7 +1,8 @@
-var assert = require("assert");
-var expect = require("expect.js");
-var application = require("../lib/application");
+if (typeof define !== 'function') {
+  var define = require('amdefine')(module);
+}
 
+define(['expect','application'], function tests(expect, application){
 describe('standard inheritance', function(){
   var std = {};
   beforeEach(function(){
@@ -312,3 +313,5 @@ describe('override', function(){
     });
   });
 });
+});
+
