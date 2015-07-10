@@ -1,0 +1,15 @@
+/*
+ * License goes here
+ */
+
+(function (root, factory) {
+ 'use strict';
+    if (typeof define === 'function' && define.amd) {
+        // AMD.
+        define(['define', 'requirejs'], factory);
+    } else {
+        // Browser globals
+        root.setup = factory(require('amdefine')(module), require('requirejs'));
+    }
+}(this, function (define, require) {
+ 'use strict';
