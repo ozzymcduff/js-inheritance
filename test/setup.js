@@ -1,4 +1,6 @@
-
+'use strict';
+var std = '../test/standard_inheritance_spec.js',
+  prot = '../test/prototype_inheritance_spec.js';
 
 if (typeof module !== 'undefined' && module.exports) {
   var mocha = require('mocha');
@@ -6,35 +8,36 @@ if (typeof module !== 'undefined' && module.exports) {
   requirejs.config({
     baseUrl: './lib',
     nodeRequire: require,
-    shims:{
-      "expect":{
-        deps:['expect.js']
+    shims: {
+      'expect': {
+        deps: ['expect.js']
       }
     }
   });
-  requirejs(["expect", 'application', "../test/spec"], function startMocha(){
+  console.log('module exports');
+  requirejs(['expect', 'application', '../test/spec', std, prot], function startMocha() {
     mocha.checkLeaks();
     mocha.globals([]);
     mocha.run();
-    console.log("Q");
   });
-}else{
+} else {
   require.config({
     baseUrl: '../lib',
     paths: {
-      "expect_js" : "../node_modules/expect.js/index",
-      "expect": "../test/expect"
+      'expect_js': '../node_modules/expect.js/index',
+      'expect': '../test/expect'
     },
-    shims:{
-      "expect":{
-        init: function(){
-          console.log(1);
+    shims: {
+      'expect': {
+        init: function () {
           return window.expect;
         }
-      }  
+      }
     }
   });
-  require(['../test/spec'], function startMocha(_){
+  console.log('other');
+
+  require(['../test/spec', std, prot], function startMocha(_) {
     mocha.checkLeaks();
     mocha.globals([]);
     mocha.run();
