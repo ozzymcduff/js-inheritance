@@ -6,7 +6,8 @@ require.config({
   }
 });
 
-define(['require', 'expect', 'application', '../test/standard_inheritance_spec.js', '../test/prototype_inheritance_spec.js'], function (require) {
+define(['require', 'expect', 'application',
+ '../test/spec', '../test/standard_inheritance_spec.js', '../test/prototype_inheritance_spec.js'], function (require) {
   'use strict';
   mocha.checkLeaks();
   mocha.globals([]);

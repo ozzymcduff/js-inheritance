@@ -1,7 +1,3 @@
-if (typeof define !== 'function') {
-  var define = require('amdefine')(module);
-}
-
 define(['expect', 'application'], function tests(expect, application) {
   describe('app', function () {
     var app = {};
